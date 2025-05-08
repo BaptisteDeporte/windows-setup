@@ -338,7 +338,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # Installer les applications
-choco install brave discord steam keepassxc riotgames-leagueoflegends -y
+choco install brave discord steam keepassxc leagueoflegends icloud -y
 		</File>
 		<File path="C:\Windows\Setup\Scripts\Specialize.ps1">
 $scripts = @(
