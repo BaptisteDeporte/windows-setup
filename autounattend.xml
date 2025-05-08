@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <unattend xmlns="urn:schemas-microsoft-com:unattend" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State">
-	<!--https://schneegans.de/windows/unattend-generator/?LanguageMode=Unattended&UILanguage=en-US&Locale=fr-FR&Keyboard=0000040c&UseKeyboard2=true&Locale2=en-US&Keyboard2=0000040c&GeoLocation=84&ProcessorArchitecture=amd64&ComputerNameMode=Random&CompactOsMode=Never&TimeZoneMode=Explicit&TimeZone=Romance+Standard+Time&PartitionMode=Custom&DiskpartScript=select+disk+1%0D%0Aclean%0D%0Aconvert+gpt%0D%0Acreate+partition+efi+size%3D300%0D%0Aformat+quick+fs%3Dfat32+label%3D%22System%22%0D%0Acreate+partition+msr+size%3D16%0D%0Acreate+partition+primary%0D%0Ashrink+minimum%3D1000%0D%0Aformat+quick+fs%3Dntfs+label%3D%22Windows%22%0D%0Acreate+partition+primary%0D%0Aformat+quick+fs%3Dntfs+label%3D%22Recovery%22%0D%0Aset+id%3D%22de94bba4-06d1-4d40-a16a-bfd50179d6ac%22%0D%0Agpt+attributes%3D0x8000000000000001%0D%0A%0D%0Aselect+disk+0%0D%0Aclean%0D%0Aconvert+gpt%0D%0Acreate+partition+primary%0D%0Aformat+quick+fs%3Dntfs+label%3D%22Data%22%0D%0Aassign+letter%3DD&InstallToMode=Available&DiskAssertionMode=Skip&WindowsEditionMode=Firmware&UserAccountMode=Unattended&AccountName0=Flubert&AccountDisplayName0=&AccountPassword0=&AccountGroup0=Administrators&AutoLogonMode=Own&PasswordExpirationMode=Unlimited&LockoutMode=Default&HideFiles=None&ShowFileExtensions=true&TaskbarSearch=Hide&TaskbarIconsMode=Empty&DisableWidgets=true&HideTaskViewButton=true&DisableBingResults=true&StartTilesMode=Empty&StartPinsMode=Empty&DisableAppSuggestions=true&HideEdgeFre=true&DisableEdgeStartupBoost=true&DisablePointerPrecision=true&DeleteWindowsOld=true&EffectsMode=Performance&DesktopIconsMode=Custom&WifiMode=Skip&ExpressSettings=DisableAll&KeysMode=Skip&ColorMode=Default&WallpaperMode=Default&RemoveOpenSSHClient=true&RemoveXboxApps=true&FirstLogonScript0=%23+setup.ps1%0D%0ASet-ExecutionPolicy+Bypass+-Scope+Process+-Force%0D%0A%0D%0A%23+Installer+Chocolatey%0D%0Aiex+%28%28New-Object+System.Net.WebClient%29.DownloadString%28%27https%3A%2F%2Fchocolatey.org%2Finstall.ps1%27%29%29%0D%0A%0D%0A%23+Installer+les+applications%0D%0Achoco+install+brave+discord+steam+keepassxc+riotgames-leagueoflegends+-y&FirstLogonScriptType0=Ps1&WdacMode=Skip-->
+	<!--https://schneegans.de/windows/unattend-generator/?LanguageMode=Unattended&UILanguage=en-US&Locale=fr-FR&Keyboard=0000040c&UseKeyboard2=true&Locale2=en-US&Keyboard2=0000040c&GeoLocation=84&ProcessorArchitecture=amd64&ComputerNameMode=Random&CompactOsMode=Never&TimeZoneMode=Explicit&TimeZone=Romance+Standard+Time&PartitionMode=Interactive&DiskAssertionMode=Skip&WindowsEditionMode=Firmware&UserAccountMode=Unattended&AccountName0=Flubert&AccountDisplayName0=&AccountPassword0=&AccountGroup0=Administrators&AutoLogonMode=Own&PasswordExpirationMode=Unlimited&LockoutMode=Default&HideFiles=None&ShowFileExtensions=true&TaskbarSearch=Hide&TaskbarIconsMode=Empty&DisableWidgets=true&HideTaskViewButton=true&DisableBingResults=true&StartTilesMode=Empty&StartPinsMode=Empty&DisableAppSuggestions=true&HideEdgeFre=true&DisableEdgeStartupBoost=true&DisablePointerPrecision=true&DeleteWindowsOld=true&EffectsMode=Performance&DesktopIconsMode=Custom&WifiMode=Skip&ExpressSettings=DisableAll&KeysMode=Skip&ColorMode=Default&WallpaperMode=Default&FirstLogonScript0=%23+setup.ps1%0D%0ASet-ExecutionPolicy+Bypass+-Scope+Process+-Force%0D%0A%0D%0A%23+Installer+Chocolatey%0D%0Aiex+%28%28New-Object+System.Net.WebClient%29.DownloadString%28%27https%3A%2F%2Fchocolatey.org%2Finstall.ps1%27%29%29%0D%0A%0D%0A%23+Installer+les+applications%0D%0Achoco+install+brave+discord+steam+keepassxc+leagueoflegends+nvidia-app+git+vscode+-y%0D%0A%0D%0A%23+D%C3%A9finir+le+chemin+du+bureau+de+l%27utilisateur+actuel%0D%0A%24DesktopPath+%3D+%5BSystem.Environment%5D%3A%3AGetFolderPath%28%27Desktop%27%29%0D%0A%0D%0A%23+Supprimer+tous+les+fichiers+et+dossiers+du+bureau%0D%0AGet-ChildItem+-Path+%24DesktopPath+-Recurse+%7C+Remove-Item+-Force+-Recurse+-Confirm&FirstLogonScriptType0=Ps1&WdacMode=Skip-->
 	<settings pass="offlineServicing"></settings>
 	<settings pass="windowsPE">
 		<component name="Microsoft-Windows-International-Core-WinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
@@ -16,7 +16,6 @@
 			<ImageInstall>
 				<OSImage>
 					<Compact>false</Compact>
-					<InstallToAvailablePartition>true</InstallToAvailablePartition>
 				</OSImage>
 			</ImageInstall>
 			<UserData>
@@ -27,28 +26,6 @@
 				<AcceptEula>true</AcceptEula>
 			</UserData>
 			<UseConfigurationSet>false</UseConfigurationSet>
-			<RunSynchronous>
-				<RunSynchronousCommand wcm:action="add">
-					<Order>1</Order>
-					<Path>cmd.exe /c "&gt;&gt;"X:\diskpart.txt" (echo select disk 1&amp;echo clean&amp;echo convert gpt&amp;echo create partition efi size=300&amp;echo format quick fs=fat32 label="System"&amp;echo create partition msr size=16)"</Path>
-				</RunSynchronousCommand>
-				<RunSynchronousCommand wcm:action="add">
-					<Order>2</Order>
-					<Path>cmd.exe /c "&gt;&gt;"X:\diskpart.txt" (echo create partition primary&amp;echo shrink minimum=1000&amp;echo format quick fs=ntfs label="Windows"&amp;echo create partition primary&amp;echo format quick fs=ntfs label="Recovery")"</Path>
-				</RunSynchronousCommand>
-				<RunSynchronousCommand wcm:action="add">
-					<Order>3</Order>
-					<Path>cmd.exe /c "&gt;&gt;"X:\diskpart.txt" (echo set id="de94bba4-06d1-4d40-a16a-bfd50179d6ac"&amp;echo gpt attributes=0x8000000000000001&amp;echo select disk 0&amp;echo clean&amp;echo convert gpt&amp;echo create partition primary)"</Path>
-				</RunSynchronousCommand>
-				<RunSynchronousCommand wcm:action="add">
-					<Order>4</Order>
-					<Path>cmd.exe /c "&gt;&gt;"X:\diskpart.txt" (echo format quick fs=ntfs label="Data"&amp;echo assign letter=D)"</Path>
-				</RunSynchronousCommand>
-				<RunSynchronousCommand wcm:action="add">
-					<Order>5</Order>
-					<Path>cmd.exe /c "diskpart.exe /s "X:\diskpart.txt" &gt;&gt;"X:\diskpart.log" || ( type "X:\diskpart.log" &amp; echo diskpart encountered an error. &amp; pause &amp; exit /b 1 )"</Path>
-				</RunSynchronousCommand>
-			</RunSynchronous>
 		</component>
 	</settings>
 	<settings pass="generalize"></settings>
@@ -145,103 +122,6 @@ foreach( $file in $Document.unattend.Extensions.File ) {
     [System.IO.File]::WriteAllBytes( $path, $bytes );
 }
 		</ExtractScript>
-		<File path="C:\Windows\Setup\Scripts\RemovePackages.ps1">
-$selectors = @(
-	'Microsoft.Xbox.TCUI';
-	'Microsoft.XboxApp';
-	'Microsoft.XboxGameOverlay';
-	'Microsoft.XboxGamingOverlay';
-	'Microsoft.XboxIdentityProvider';
-	'Microsoft.XboxSpeechToTextOverlay';
-	'Microsoft.GamingApp';
-);
-$getCommand = {
-  Get-AppxProvisionedPackage -Online;
-};
-$filterCommand = {
-  $_.DisplayName -eq $selector;
-};
-$removeCommand = {
-  [CmdletBinding()]
-  param(
-    [Parameter( Mandatory, ValueFromPipeline )]
-    $InputObject
-  );
-  process {
-    $InputObject | Remove-AppxProvisionedPackage -AllUsers -Online -ErrorAction 'Continue';
-  }
-};
-$type = 'Package';
-$logfile = 'C:\Windows\Setup\Scripts\RemovePackages.log';
-&amp; {
-	$installed = &amp; $getCommand;
-	foreach( $selector in $selectors ) {
-		$result = [ordered] @{
-			Selector = $selector;
-		};
-		$found = $installed | Where-Object -FilterScript $filterCommand;
-		if( $found ) {
-			$result.Output = $found | &amp; $removeCommand;
-			if( $? ) {
-				$result.Message = "$type removed.";
-			} else {
-				$result.Message = "$type not removed.";
-				$result.Error = $Error[0];
-			}
-		} else {
-			$result.Message = "$type not installed.";
-		}
-		$result | ConvertTo-Json -Depth 3 -Compress;
-	}
-} *&gt;&amp;1 &gt;&gt; $logfile;
-		</File>
-		<File path="C:\Windows\Setup\Scripts\RemoveCapabilities.ps1">
-$selectors = @(
-	'OpenSSH.Client';
-);
-$getCommand = {
-  Get-WindowsCapability -Online | Where-Object -Property 'State' -NotIn -Value @(
-    'NotPresent';
-    'Removed';
-  );
-};
-$filterCommand = {
-  ($_.Name -split '~')[0] -eq $selector;
-};
-$removeCommand = {
-  [CmdletBinding()]
-  param(
-    [Parameter( Mandatory, ValueFromPipeline )]
-    $InputObject
-  );
-  process {
-    $InputObject | Remove-WindowsCapability -Online -ErrorAction 'Continue';
-  }
-};
-$type = 'Capability';
-$logfile = 'C:\Windows\Setup\Scripts\RemoveCapabilities.log';
-&amp; {
-	$installed = &amp; $getCommand;
-	foreach( $selector in $selectors ) {
-		$result = [ordered] @{
-			Selector = $selector;
-		};
-		$found = $installed | Where-Object -FilterScript $filterCommand;
-		if( $found ) {
-			$result.Output = $found | &amp; $removeCommand;
-			if( $? ) {
-				$result.Message = "$type removed.";
-			} else {
-				$result.Message = "$type not removed.";
-				$result.Error = $Error[0];
-			}
-		} else {
-			$result.Message = "$type not installed.";
-		}
-		$result | ConvertTo-Json -Depth 3 -Compress;
-	}
-} *&gt;&amp;1 &gt;&gt; $logfile;
-		</File>
 		<File path="C:\Windows\Setup\Scripts\TaskbarLayoutModification.xml">
 &lt;LayoutModificationTemplate xmlns="http://schemas.microsoft.com/Start/2014/LayoutModification" xmlns:defaultlayout="http://schemas.microsoft.com/Start/2014/FullDefaultLayout" xmlns:start="http://schemas.microsoft.com/Start/2014/StartLayout" xmlns:taskbar="http://schemas.microsoft.com/Start/2014/TaskbarLayout" Version="1"&gt;
 	&lt;CustomTaskbarLayoutCollection PinListPlacement="Replace"&gt;
@@ -338,16 +218,16 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 # Installer les applications
-choco install brave discord steam keepassxc leagueoflegends icloud -y
+choco install brave discord steam keepassxc leagueoflegends nvidia-app git vscode -y
+
+# D&#xE9;finir le chemin du bureau de l'utilisateur actuel
+$DesktopPath = [System.Environment]::GetFolderPath('Desktop')
+
+# Supprimer tous les fichiers et dossiers du bureau
+Get-ChildItem -Path $DesktopPath -Recurse | Remove-Item -Force -Recurse -Confirm
 		</File>
 		<File path="C:\Windows\Setup\Scripts\Specialize.ps1">
 $scripts = @(
-	{
-		Get-Content -LiteralPath 'C:\Windows\Setup\Scripts\RemovePackages.ps1' -Raw | Invoke-Expression;
-	};
-	{
-		Get-Content -LiteralPath 'C:\Windows\Setup\Scripts\RemoveCapabilities.ps1' -Raw | Invoke-Expression;
-	};
 	{
 		net.exe accounts /maxpwage:UNLIMITED;
 	};
@@ -489,9 +369,6 @@ $scripts = @(
 		</File>
 		<File path="C:\Windows\Setup\Scripts\DefaultUser.ps1">
 $scripts = @(
-	{
-		reg.exe add "HKU\DefaultUser\Software\Microsoft\Windows\CurrentVersion\GameDVR" /v AppCaptureEnabled /t REG_DWORD /d 0 /f;
-	};
 	{
 		reg.exe add "HKU\DefaultUser\Software\Policies\Microsoft\Windows\Explorer" /v "StartLayoutFile" /t REG_SZ /d "C:\Windows\Setup\Scripts\TaskbarLayoutModification.xml" /f;
 		reg.exe add "HKU\DefaultUser\Software\Policies\Microsoft\Windows\Explorer" /v "LockedStartLayout" /t REG_DWORD /d 1 /f;
